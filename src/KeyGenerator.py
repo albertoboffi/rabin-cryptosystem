@@ -4,14 +4,13 @@ import secrets
 from primality import primality
 
 __author__ = 'Alberto Boffi'
-__date__ = '2023-11-23'
 __deprecated__ = False
 
 class KeyGenerator:
     
     # Input: prime p
     # Output True if p ≡ 3 mod 4, False otherwise
-    def __isValidPrime(self, p):
+    def __isValidPrime(self, p: int):
 
         if (p % 4 == 3): return True
         return False
