@@ -3,7 +3,6 @@
 from KeyGenerator import KeyGenerator
 
 __author__ = 'Alberto Boffi'
-__date__ = '2023-11-23'
 __deprecated__ = False
 
 class RabinCryptosystem:
@@ -25,8 +24,25 @@ class RabinCryptosystem:
         self.k_pri = keys["private"]
         self.k_pub = keys["public"]
 
-    def encrypt(self, msg, key):
-        pass
+    """
+    # Input: string
+    # Output: integer produced through a bijective function
+    def __fromStringToInt(s: str):
+        s_bytes = s.encode("utf-8")
+        s_int = int.from_bytes(s_bytes, byteorder = "big")
+        return s_int
+    """
 
-    def decrypt(self, msg, key):
+    # Input: plaintext
+    # Output: ciphertext
+    # Behavior: Encrypts the plaintext using the public key
+    def encrypt(self, plaintext: int):
+
+        ciphertext = (plaintext ** 2) % self.k_pub
+
+        return ciphertext
+
+
+    def decrypt(self, ciphertext: int):
+
         pass
