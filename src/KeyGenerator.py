@@ -10,14 +10,14 @@ class KeyGenerator:
     
     # Input: prime p
     # Output True if p ≡ 3 mod 4, False otherwise
-    def __isValidPrime(self, p: int):
+    def __isValidPrime(self, p: int) -> bool:
 
         if (p % 4 == 3): return True
         return False
     
     # Input: -
     # Output: random number n, st the generated prime will be at least the n-th prime
-    def __getRandomSeed(self):
+    def __getRandomSeed(self) -> int:
 
         seed_range = range(1000, 10000)
         seed = secrets.choice(seed_range)
@@ -26,7 +26,7 @@ class KeyGenerator:
     
     # Input: -
     # Output: random large prime p such that p ≡ 3 mod 4
-    def __generatePrime(self):
+    def __generatePrime(self) -> int:
 
         seed = self.__getRandomSeed()
 
@@ -41,13 +41,13 @@ class KeyGenerator:
 
     # Input: -
     # Output: key pair for the Rabin cryptosystem
-    def generateKeys(self):
+    def generateKeys(self) -> dict:
 
         p = self.__generatePrime()
         q = self.__generatePrime()
 
-        k_pri = p * q
-        k_pub = (p, q)
+        k_pri = (p, q)
+        k_pub = p * q
 
         return {
             "private": k_pri,
