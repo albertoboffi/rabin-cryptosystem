@@ -41,7 +41,7 @@ def main(msg):
 
     print("Original message >> ", msg)
     print("Encrypted message >> ", ciphertext)
-    print("Possible plaintexts >> ", plaintexts)
+    print("Decrypted message >> ", plaintexts)
 
 
 if __name__ == '__main__':
