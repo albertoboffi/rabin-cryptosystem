@@ -57,15 +57,6 @@ class RabinCryptosystem:
         self.k_pri = keys["private"]
         self.k_pub = keys["public"]
 
-    """
-    # Input: string
-    # Output: integer produced through a bijective function
-    def __fromStringToInt(s: str):
-        s_bytes = s.encode("utf-8")
-        s_int = int.from_bytes(s_bytes, byteorder = "big")
-        return s_int
-    """
-
     # Input: Plaintext
     # Output: Ciphertext
     # Behavior: Encrypts the plaintext using the public key
