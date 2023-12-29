@@ -16,74 +16,56 @@ class RabinTextManager:
         self.crypsys = RabinCryptosystem()
 
     # Input: Text
-    # Output: List of two-characters strings
-    # Behavior: Splits the text in groups of two characters
+    # Output: List of characters of the strings
+    # Behavior: Splits the text in each character composing it
 
-    def __splitText(self, text:str):
-
-        split_len = 1   # number of characters in each split
+    def __splitText(self, text:str, split_size:int):
 
         text_split = [
         
-            text[i:i + split_len]
+            text[i:i + split_size]
 
-            for i in range(0, len(text), split_len)
+            for i in range(0, len(text), split_size)
         
         ]
 
         return text_split
     
-    # Input: List of strings
+    def __getTextFromCiphertext(self, ciphertext:int):
+
+        s_ciphertext = str(ciphertext)
+
+        fh = s_ciphertext[:len(s_ciphertext) // 2]
+        sh = s_ciphertext[len(s_ciphertext) // 2 :]
+
+        fchar = chr(int(fh))
+        schar = chr(int(sh))
+
+        text = fchar + schar
+
+        return text
+
+    # Input: List of chars
     # Output: Single string
-    # Behavior: Merges all the strings in the list in a unique string
+    # Behavior: Merges all the characters in the list in a unique string
 
     def __mergeTexts(self, text_split:list):
 
         text = "".join(text_split)
 
         return text
-
-    # Input: Text
-    # Output: Integer number
-    # Behavior: Converts a string into an integer through a bijective function
-
-    def __encodeText(self, text:str):
-
-        text_bytes = text.encode("utf-8")
-        text_int = int.from_bytes(text_bytes, byteorder = "big")
-        
-        return text_int
-    
-    # Input: Integer number
-    # Output: Text
-    # Behavior: Converts the integer produced through a bijective function into the original string
-    
-    def __decodeNumber(self, num:int):
-
-        num_bytes = num.to_bytes(
-        
-            (num.bit_length() + 7) // 8,
-            byteorder="big"
-
-        )
-
-        num_string = num_bytes.decode("utf-8")
-
-        return num_string
     
     def encrypt(self, text:str):
 
-        text_split = self.__splitText(text)
+        chars = self.__splitText(text, 1)
 
-        enc_text = []
+        enc_text = ""
 
-        for i in range(len(text_split)):
+        for i in range(len(chars)):
 
-            plaintext = self.__encodeText(text_split[i])
+            plaintext = ord(chars[i]) # ascii char
             ciphertext = self.crypsys.encrypt(plaintext)
 
-            enc_text.append(ciphertext)
+            enc_text += self.__getTextFromCiphertext(ciphertext)
         
         return enc_text
-
-
