@@ -29,14 +29,14 @@ class KeyGenerator:
     # Input: -
     # Output: Random large prime p such that p ≡ 3 mod 4
 
-    def __generatePrime(self) -> int:
+    def __generatePrime(self, q = 0) -> int:
 
         seed = self.__getRandomSeed()
 
         p = primality.nthprime(seed)
 
         i = 0
-        while (not(self.__isValidPrime(p))):
+        while (not(self.__isValidPrime(p) or (p == q))):
            p = primality.nthprime(seed + i)
            i += 1
 
@@ -47,8 +47,8 @@ class KeyGenerator:
 
     def generateKeys(self) -> dict:
 
-        p = self.__generatePrime()
         q = self.__generatePrime()
+        p = self.__generatePrime(q)
 
         k_pri = (p, q)
         k_pub = p * q
