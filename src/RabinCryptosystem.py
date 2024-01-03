@@ -24,7 +24,7 @@ class RabinCryptosystem:
     # Output: New Plaintext 
     # Behavior: Adds to the original plaintext a prefix equal to the plaintext itself
         
-    def __addPrefix(self, plaintext:int):
+    def __addPrefix(self, plaintext:int) -> int:
 
         s_pt = str(plaintext)
         pref_pt = int(s_pt + s_pt)
@@ -35,7 +35,7 @@ class RabinCryptosystem:
     # Output: Correct plaintext
     # Behavior: Finds the number that is repeat twice in one of a candidate extended plaintexts
 
-    def __getPlaintext(self, plaintexts: list):
+    def __getPlaintext(self, plaintexts: list) -> None:
 
         for i in range(0, 4):
 
@@ -51,7 +51,7 @@ class RabinCryptosystem:
     # Output: -
     # Behavior: Generates a key pair
 
-    def generateKeys(self):
+    def generateKeys(self) -> None:
 
         keys = self.key_generator.generateKeys()
         self.k_pri = keys["private"]
