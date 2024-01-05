@@ -1,1 +1,2 @@
-# rabin-cryptosystem
+# Rabin Cryptosystem
+Robust implementation of the Rabin Cryptosystem.
